@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sindhi Women's Health Assistant</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar: past conversations -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <span class="sidebar__title">History</span>
+        <button id="closeSidebarBtn" class="icon-btn sidebar__close" aria-label="Close history">&times;</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <p class="history-list__empty">No conversations yet.</p>
+      </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <div class="main-column">
+
+      <header class="topbar">
+        <button id="openSidebarBtn" class="icon-btn topbar__history-btn" aria-label="Show history">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+          </svg>
+          History
+        </button>
+
+        <div class="topbar__brand">
+          <img src="{{ url_for('static', filename='logo.png') }}" alt="Proxima AI" class="topbar__logo" />
+          <div>
+            <h1 class="topbar__title">Voice Assistant</h1>
+            <p class="topbar__subtitle">Women Health Bot</p>
+          </div>
+        </div>
+
+        <span class="topbar__spacer"></span>
+      </header>
+
+      <main class="card">
+
+        <div class="status-row">
+          <span id="statusDot" class="status-dot status-dot--disconnected"></span>
+          <span id="statusText">Disconnected</span>
+        </div>
+
+        <div class="mic-area">
+          <button id="micButton" class="mic-button" disabled>
+            <svg id="micIcon" viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+              <line x1="8" y1="22" x2="16" y2="22"/>
+            </svg>
+            <span class="mic-button__ring"></span>
+            <span class="mic-button__ring mic-button__ring--delay"></span>
+          </button>
+          <p id="stateLabel" class="state-label"></p>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="btn btn--primary">Start Conversation</button>
+          <button id="endBtn" class="btn btn--danger" disabled>End Conversation</button>
+        </div>
+
+        <p id="errorMessage" class="error-message" hidden></p>
+
+        <section class="transcript-section">
+          <h2 class="transcript-title">Transcript</h2>
+          <div id="transcript" class="transcript">
+            <p class="transcript__placeholder">Your conversation will appear here.</p>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="app-footer">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Proxima AI" class="app-footer__logo" />
+        <span>Built by Proxima AI</span>
+      </footer>
+
+    </div>
+  </div>
+
+  <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
